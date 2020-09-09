@@ -1,0 +1,62 @@
+$primary-color: black;
+$text-color: #fff;
+$font-weights: (
+  'regular': 400,
+  'medium': 500,
+  'bold': 600,
+);
+
+$clr-red: #ee1119;
+$clr-black: rgba(black, 1);
+$clr-gray: rgba(black, 0.7);
+$clr-default: white;
+
+$font-size-h1: 4rem;
+$font-size-h2: 3rem;
+$font-size-h3: 1.3rem;
+$font-size-p: 1rem;
+$font-size-mobile-h1: 3rem;
+$font-size-mobile-h2: 2.5rem;
+$font-size-mobile-h3: 1.1rem;
+$font-size-mobile-p: 1rem;
+
+$sub-item: rgb(184, 184, 184);
+
+$breakpoints: (
+  'phone-small': 350px,
+  'phone': 400px,
+  'phone-wide': 480px,
+  'phablet': 560px,
+  'tablet-small': 640px,
+  'tablet': 768px,
+  'tablet-wide': 1024px,
+  'desktop': 1248px,
+  'desktop-wide': 1470px,
+);
+
+@mixin push--auto {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+  $padding: unquote(($y / $x) * 100 + '%');
+  @if $pseudo {
+    &:before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+@mixin heightfix {
+  @supports (-webkit-touch-callout: none) {
+    /* The hack for Safari */
+    height: -webkit-fill-available;
+  }
+}
