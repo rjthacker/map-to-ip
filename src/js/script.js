@@ -16,18 +16,16 @@ function passData(x) {
   area.innerText = `${x.location.city}, ${x.location.region} ${x.location.postalCode}`;
   timezone.innerText = x.location.timezone;
   isp.innerText = x.isp;
-  // Sets the latitude and longitude variables with data from API
+  // Sets the latitude and longitude
   let lat = x.location.lat;
   let lng = x.location.lng;
-  // Uses the lat and lng variables to set the view for the map
+  // Sets the view for the map
   mymap.setView([`${lat}`, `${lng}`]);
 }
 
 function dataChange(event) {
   // Prevent form from submitting
   event.preventDefault();
-  // Pulls data from the IP Geolocation API - https://geo.ipify.org/
-  // If the input value is a string, it will pull data using a domain name, else it will pull from a ip address
   if (typeof input.value === 'string' || input.value instanceof String) {
     fetch(
       // The input value is passed onto the request as a domain address
@@ -35,7 +33,6 @@ function dataChange(event) {
     )
       .then((res) => res.json())
       .then((data) => {
-        // Passes the data to the passData function
         passData(data);
       })
       .catch((error) => console.log('ERROR'));
@@ -46,7 +43,6 @@ function dataChange(event) {
     )
       .then((res) => res.json())
       .then((data) => {
-        // Passes the data to the passData function
         passData(data);
       })
       .catch((error) => console.log('ERROR'));
